@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      # use the current directory
+      context: .
+      args:
+        # only using this for dev, so set it to true
+        - DEV=true
+    ports:
+      - "8000:8000"
+      # map local /app to container /app
+    volumes:
+      - ./app:/app
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
